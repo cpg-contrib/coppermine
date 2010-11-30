@@ -12,7 +12,7 @@
 <!--
   SVN version info:
 
-  Coppermine version: 1.5.9
+  Coppermine version: 1.5.10
   $HeadURL$
   $Revision$
 -->
@@ -49,6 +49,86 @@
                 <th valign="top" align="left">Paquetage</td>
                 <th valign="top" align="left">Raison de la mise à jour</td>
                 <th valign="top" align="left"><span class="small">Date de publication</span></td>
+              </tr>
+              <tr>
+                <td valign="top">cpg1.5.10</td>
+                <td valign="top">
+                  <ul>
+                    <li>Maintenance release (stable)</li>
+                    <li><a href="http://forum.coppermine-gallery.net/index.php/topic,68334.0.html">Announcement thread</a></li>
+                    <li>Fixed default page when comments are sorted in descending order (<a href="http://forum.coppermine-gallery.net/index.php/topic,66441.0.html">thread</a>)</li>
+                    <li>Counted version count up in SVN repository from cpg1.5.8 to cpg1.5.9</li>
+                    <li>Fixed issue with plugin usergal_alphatabs when bridged (<a href="http://forum.coppermine-gallery.net/index.php/topic,66340.0.html">thread</a>)</li>
+                    <li>Added charsetmgr.php to the delete files array (<a href="http://forum.coppermine-gallery.net/index.php/topic,66490.0.html">thread</a>)</li>
+                    <li>Fixed admin email address validation (<a href="http://forum.coppermine-gallery.net/index.php/topic,66512.0.html">thread</a>)</li>
+                    <li>Corrected French lang file to fix the non showing dropdown in the user manager (<a href="http://forum.coppermine-gallery.net/index.php/topic,66524.0.html">thread</a>)</li>
+                    <li>Fixed search feature in the keyword manager (<a href="http://forum.coppermine-gallery.net/index.php/topic,66550.0.html">thread</a>)</li>
+                    <li>Added partial Swedish language file (user contribution)</li>
+                    <li>Added Italian language file (user contribution)</li>
+                    <li>Added Icelandic language file (user contribution)</li>
+                    <li>Added language fallback to function cpg_get_default_lang_var (<a href="http://forum.coppermine-gallery.net/index.php/topic,66513.0.html">thread</a>)</li>
+                    <li>Updated Finnish language file (user contribution)</li>
+                    <li>Updated default value of transparent_overlay in configuration.htm (<a href="http://forum.coppermine-gallery.net/index.php/topic,66660.0.html">thread</a>)</li>
+                    <li>Added code that makes sure mb_strlen actually exists when called (<a href="http://forum.coppermine-gallery.net/index.php/topic,66674.0.html">thread</a>)</li>
+                    <li>Fixed album manager issue when users aren't allowed to create private albums (<a href="http://forum.coppermine-gallery.net/index.php/topic,66325.0.html">thread</a>)</li>
+                    <li>Fixed lower case user name issue with plugin usergal_alphatabs (<a href="http://forum.coppermine-gallery.net/index.php/topic,66485.0.html">thread</a>)</li>
+                    <li>Fixed issue where users can edit public albums (<a href="http://forum.coppermine-gallery.net/index.php/topic,66380.0.html">thread</a>)</li>
+                    <li>HTML validation (<a href="http://forum.coppermine-gallery.net/index.php/topic,66448.0.html">thread</a>)</li>
+                    <li>Added partial Portuguese language file (user contribution)</li>
+                    <li>Added partial Catalan language file (user contribution)</li>
+                    <li>Fixed template error if guests are allowed to create public albums</li>
+                    <li>Allow admin to change email address (<a href="http://forum.coppermine-gallery.net/index.php/topic,66881.0.html">thread</a>)</li>
+                    <li>Fixed issue when regular users try to upload to self-created public albums with simple upload form (<a href="http://forum.coppermine-gallery.net/index.php/topic,66903.0.html">thread</a>)</li>
+                    <li>Fixed missing classid attribute causing videos not to play (<a href="http://forum.coppermine-gallery.net/index.php/topic,66477.0.html">thread</a>, <a href="http://forum.coppermine-gallery.net/index.php/topic,66393.0.html">thread</a>)</li>
+                    <li>Updated regex to fix error message for blank 'allowed file types' values (<a href="http://forum.coppermine-gallery.net/index.php/topic,66289.0.html">thread</a>)</li>
+                    <li>Fixed setting email sender address</li>
+                    <li>Show 'upload needs admin approval' message for flash uploader (<a href="http://forum.coppermine-gallery.net/index.php/topic,66832.0.html">thread</a>)</li>
+                    <li>Fixed exif issue when auto resizing is enabled and watermarking is disabled (<a href="http://forum.coppermine-gallery.net/index.php/topic,66994.0.html">thread</a>, <a href="http://forum.coppermine-gallery.net/index.php/topic,66489.0.html">thread</a>)</li>
+                    <li>Optimized picture resizing and watermarking procedure</li>
+                    <li>Fixed display of unprocessed bbcode markup in ecard display</li>
+                    <li>Fixed registration process if both email verification and admin activation enabled (<a href="http://forum.coppermine-gallery.net/index.php/topic,67095.0.html">thread</a>)</li>
+                    <li>Fixed error message if uploaded file exceeds dimension limit (<a href="http://forum.coppermine-gallery.net/index.php/topic,67282.0.html">thread</a>)</li>
+                    <li>Fixed session table name in SMF bridge files (<a href="http://forum.coppermine-gallery.net/index.php/topic,67169.0.html">thread</a>)</li>
+                    <li>Fixed deprecated message on pluginmgr.php (<a href="http://forum.coppermine-gallery.net/index.php/topic,67308.0.html">thread</a>)</li>
+                    <li>Fixed critical error on memberlist when bridged (<a href="http://forum.coppermine-gallery.net/index.php/topic,64678.0.html">thread</a>)</li>
+                    <li>Fixed use of mysql_insert_id (<a href="http://forum.coppermine-gallery.net/index.php/topic,67402.0.html">thread</a>)</li>
+                    <li>Fixed template placeholder bug that caused cut off tags</li>
+                    <li>Updated Swedish language file (previous version was mainly a Danish language file)</li>
+                    <li>Added partial Swedish documentation</li>
+                    <li>Fixed last visit display in user manager when bridged with SMF2 (<a href="http://forum.coppermine-gallery.net/index.php/topic,2.0.html">thread</a>, <a href="http://forum.coppermine-gallery.net/index.php/topic,67422.0.html">thread</a>)</li>
+                    <li>Fixed implementation of plugin hook 'ip_information' (<a href="http://forum.coppermine-gallery.net/index.php/topic,67187.0.html">thread</a>)</li>
+                    <li>Use IPTC headline instead of IPTC title as picture title according to docs (<a href="http://forum.coppermine-gallery.net/index.php/topic,61380.0.html">thread</a>)</li>
+                    <li>Added additional submit button on top of 'Edit files' form (<a href="http://forum.coppermine-gallery.net/index.php/topic,67563.0.html">thread</a>)</li>
+                    <li>Added plugin hooks 'after_edit_file', 'upload_html_pre_move' and 'upload_swf_pre_move' (<a href="http://forum.coppermine-gallery.net/index.php/topic,60896.0.html">thread</a>)</li>
+                    <li>If error occurs during batch-add, show error message and don't redirect automatically (<a href="http://forum.coppermine-gallery.net/index.php/topic,67392.0.html">thread</a>)</li>
+                    <li>Fixed default selection of check boxes for batch-add (<a href="http://forum.coppermine-gallery.net/index.php/topic,67107.0.html">thread</a>)</li>
+                    <li>Fixed issue with 'User Gallery Alphabetic Tabbing' plugin when bridged (<a href="http://forum.coppermine-gallery.net/index.php/topic,66905.0.html">thread</a>)</li>
+                    <li>Skip unknown file types during batch-add process (<a href="http://forum.coppermine-gallery.net/index.php/topic,67815.0.html">thread</a>)</li>
+                    <li>Added label for 'remember me' checkbox (<a href="http://forum.coppermine-gallery.net/index.php/topic,67840.0.html">thread</a>)</li>
+                    <li>Removed value 'SERVER_PROTOCOL' from client ID generator (<a href="http://forum.coppermine-gallery.net/index.php/topic,59698.0.html">thread</a>)</li>
+                    <li>Fixed picture resizing via admin tools (<a href="http://forum.coppermine-gallery.net/index.php/topic,66802.0.html">thread</a>)</li>
+                    <li>Removed declaration of function 'cpg_folder_file_delete' from update.php (<a href="http://forum.coppermine-gallery.net/index.php/topic,65708.0.html">thread</a>)</li>
+                    <li>Fixed spelling of ImageMagick (<a href="http://forum.coppermine-gallery.net/index.php/topic,67902.0.html">thread</a>)</li>
+                    <li>Fixed error message when entering invalid email address in profile manager (<a href="http://forum.coppermine-gallery.net/index.php/topic,67903.0.html">thread</a>)</li>
+                    <li>Fixed renaming of already added files during batch-add (<a href="http://forum.coppermine-gallery.net/index.php/topic,67993.0.html">thread</a>)</li>
+                    <li>Fixed picture manager - show user created albums in public categories (<a href="http://forum.coppermine-gallery.net/index.php/topic,67937.0.html">thread</a>)</li>
+                    <li>No longer specify a MySQL engine - use the server default.</li>
+                    <li>Fixed comment approval when editing comments (<a href="http://forum.coppermine-gallery.net/index.php/topic,68066.0.html">thread</a>)</li>
+                    <li>Add anonymous group if it doesn't exist (<a href="http://forum.coppermine-gallery.net/index.php/topic,67137.0.html">thread</a>)</li>
+                    <li>Fixed ownership of albums created with xp publisher</li>
+                    <li>Consistent use of plugin hook types 'action' and 'filter' (<a href="http://forum.coppermine-gallery.net/index.php/topic,67630.0.html">thread</a>)</li>
+                    <li>Adjusted/added maxlength parameter for album title/keyword according to database types (<a href="http://forum.coppermine-gallery.net/index.php/topic,67671.0.html">thread</a>)</li>
+                    <li>Display more batch add error messages</li>
+                    <li>Fixed use of intermediate-sized image (<a href="http://forum.coppermine-gallery.net/index.php/topic,67894.0.html">thread</a>)</li>
+                    <li>Theme 'curve': remove drop-down menu leftover if empty (<a href="http://forum.coppermine-gallery.net/index.php/topic,68243.0.html">thread</a>)</li>
+                    <li>Added plugin hook 'replace_forbidden_conditions' (<a href="http://forum.coppermine-gallery.net/index.php/topic,67987.0.html">thread</a>)</li>
+                    <li>No error message for admin during upload if image dimension exceeds configuration value (<a href="http://forum.coppermine-gallery.net/index.php/topic,68240.0.html">thread</a>)</li>
+                    <li>Always use PHP time when querying the database (<a href="http://forum.coppermine-gallery.net/index.php/topic,67015.0.html">thread</a>)</li>
+                    <li>Added missing/new plugin hooks to visiblehookpoints plugin</li>
+                    <li>Fixed potential security issue during installation (<a href="http://forum.coppermine-gallery.net/index.php/topic,68285.0.html">thread</a>)</li>
+                  </ul>
+                </td>
+                <td valign="top" align="right">2010-11-30</td>
               </tr>
               <tr>
                 <td valign="top">cpg1.5.8</td>
