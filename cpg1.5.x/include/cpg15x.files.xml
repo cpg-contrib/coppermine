@@ -4150,7 +4150,7 @@
   </element>
   <element>
     <fullpath>docs/fr/images/phpmyadmin_tables.png</fullpath>
-    <status>mandatory</status>
+    <status>optional</status>
     <permission>read</permission>
     <hash>4c387ab224ac9a39a24b4fdfa4f95d97</hash>
   </element>
@@ -4174,7 +4174,7 @@
   </element>
   <element>
     <fullpath>docs/fr/images/usermgr.png</fullpath>
-    <status>mandatory</status>
+    <status>optional</status>
     <permission>read</permission>
     <hash>3dc9617118d8e1c4aaf4765d8b2ebfc1</hash>
   </element>
@@ -4192,7 +4192,7 @@
   </element>
   <element>
     <fullpath>docs/fr/images/versioncheck_output.png</fullpath>
-    <status>mandatory</status>
+    <status>optional</status>
     <permission>read</permission>
     <hash>32a06af3aec32aa019bbc05cc81d667f</hash>
   </element>
@@ -14181,7 +14181,7 @@
   </element>
   <element>
     <fullpath>themes/eyeball/images/navbar/next_inactive.png</fullpath>
-    <status>mandatory</status>
+    <status>optional</status>
     <permission>read</permission>
     <hash>4ce5a25021f6b19e3b3ca451b1f73193</hash>
   </element>
@@ -14193,7 +14193,7 @@
   </element>
   <element>
     <fullpath>themes/eyeball/images/navbar/prev_inactive.png</fullpath>
-    <status>mandatory</status>
+    <status>optional</status>
     <permission>read</permission>
     <hash>e1e23f7c8d16f308626d6390ccc1eb64</hash>
   </element>
