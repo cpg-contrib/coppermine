@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-12-09 [B] Fixed film strip issue (thread ID 68585) {eenemeenemuu}
 2010-11-30 [M] Counted version count up in SVN repository from cpg1.5.10 to cpg1.5.11 {eenemeenemuu}
 2010-11-30 [M] Release of cpg1.5.10 {eenemeenemuu}
 2010-11-30 [B] Fixed issue with language manager (thread ID 68309) {eenemeenemuu}
