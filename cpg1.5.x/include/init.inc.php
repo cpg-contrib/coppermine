@@ -15,7 +15,7 @@
   $Revision$
 **********************************************/
 
-define('COPPERMINE_VERSION', '1.5.10');
+define('COPPERMINE_VERSION', '1.5.11');
 define('COPPERMINE_VERSION_STATUS', 'stable');
 
 if (!defined('IN_COPPERMINE')) {
