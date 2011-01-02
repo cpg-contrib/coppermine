@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2010 Coppermine Dev Team
+  Copyright (c) 2003-2011 Coppermine Dev Team
   v1.0 originally written by Gregory Demar
 
   This program is free software; you can redistribute it and/or modify
@@ -10,12 +10,12 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.11
+  Coppermine version: 1.5.12
   $HeadURL$
   $Revision$
 **********************************************/
 
-define('COPPERMINE_VERSION', '1.5.11');
+define('COPPERMINE_VERSION', '1.5.12');
 define('COPPERMINE_VERSION_STATUS', 'stable');
 
 if (!defined('IN_COPPERMINE')) {

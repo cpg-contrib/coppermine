@@ -1,14 +1,14 @@
 ************************
 Coppermine Photo Gallery
 ************************
-Copyright (c) 2003-2010 Coppermine Dev Team
+Copyright (c) 2003-2011 Coppermine Dev Team
 v1.0 originally written by Gregory Demar
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
 ********************************************
-Coppermine version: 1.5.11
+Coppermine version: 1.5.12
 $HeadURL$
 $Revision$
 *********************************************
@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2011-01-02 [M] Release of cpg1.5.12 {eenemeenemuu}
 2011-01-02 [S] Fixed XSS issues (thread ID 69327) {eenemeenemuu}
 2011-01-02 [B] Fixed playback of Windows Media Player videos (thread ID 68537) {eenemeenemuu}
 2011-01-02 [B] Fixed PHP session name for captcha (thread ID 69293) {eenemeenemuu}
