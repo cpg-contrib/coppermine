@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2011-01-15 [C] Fixed version number displayed on the index page in the doc {Frantz}
 2011-01-11 [B] Fixed username in activation mail (thread ID 69555) {eenemeenemuu}
 2011-01-02 [M] Release of cpg1.5.12 {eenemeenemuu}
 2011-01-02 [S] Fixed XSS issues (thread ID 69327) {eenemeenemuu}
