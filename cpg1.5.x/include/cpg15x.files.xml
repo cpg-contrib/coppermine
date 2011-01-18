@@ -13026,6 +13026,14 @@
     <hash>4d38a6fd8e2df53df75bb47810cca9b2</hash>
   </element>
   <element>
+    <fullpath>lang/czech.php</fullpath>
+    <version>1.5.12</version>
+    <revision>8154</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>4d38a6fd8e2df53df75bb47810cca9b2</hash>
+  </element>
+  <element>
     <fullpath>lang/danish.php</fullpath>
     <version>1.5.12</version>
     <revision>8154</revision>
@@ -13139,6 +13147,14 @@
   </element>
   <element>
     <fullpath>lang/luxembourgish.php</fullpath>
+    <version>1.5.12</version>
+    <revision>8154</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>010e14abcbc165525b081afa723666fa</hash>
+  </element>
+  <element>
+    <fullpath>lang/norwegian.php.php</fullpath>
     <version>1.5.12</version>
     <revision>8154</revision>
     <status>optional</status>
